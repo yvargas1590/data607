@@ -1,0 +1,55 @@
+---
+title: "Data 607 Assignment 3"
+author: "Yourlagne VARGAS"
+date: "2024-02-05"
+output: html_document
+---
+
+
+# #1. Using the 173 majors listed in fivethirtyeight.com’s College Majors dataset [https://fivethirtyeight.com/features/the-economic-guide-to-picking-a-college-major/], provide code that identifies the majors that contain either "DATA" or "STATISTICS"
+```{r}
+data <- read.csv("https://raw.githubusercontent.com/yvargas1590/data607/main/recent-grads.csv")
+```
+
+```{r}
+data_or_stats_major <- grep("DATA|STATISTICS", data$major, value = TRUE, ignore.case = TRUE)
+```
+
+
+#2 Write code that transforms the data below:
+```{r}
+data <- c("bell pepper", "bilberry", "blackberry", "blood orange", "blueberry", "cantaloupe", "chili pepper", "cloudberry", "elderberry", "lime", "lychee", "mulberry", "olive", "salal berry")
+
+print(data)
+```
+
+
+#3 Describe, in words, what these expressions will match:
+
+# (.)\1\1: This expression will match any character (represented by ".)") followed by the same character repeated two more times. For example, it will match "aaa" or "111".
+
+# "(.)(.)\2\1": This expression will match any two characters (represented by "(.)" and "(.)") followed by the same second character and then the same first character. For example, it will match "abba" or "2424".
+
+# (..)\1: This expression will match any two characters (represented by "..") repeated exactly twice. For example, it will match "aa" or "99".
+
+# "(.).\1.\1": This expression will match any character (represented by "(.)") followed by any single character, then the same first character, followed by any single character, and then the same first character again. For example, it will match "a.a.a" or "1.1.1".
+
+# "(.)(.)(.).\3\2\1": This expression will match any three characters (represented by "(.)(.)(.)") followed by zero or more of any characters (represented by ".") and then the third character, followed by the second character, and then the first character. For example, it will match "abcabczycba" or "xyzzzzzyx".
+
+
+#4 Construct regular expressions to match words that:
+# Start and end with the same character.
+
+\b(\w)\w*\
+
+
+# Contain a repeated pair of letters (e.g. "church" contains "ch" repeated twice.)
+
+\b\w*(\w{2})\w*\1\w*\b
+
+
+# Contain one letter repeated in at least three places (e.g. "eleven" contains three "e"s.)
+
+\b\w*(\w)\w*\1\w*\1\w*\b
+
+
